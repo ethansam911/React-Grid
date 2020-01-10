@@ -13,12 +13,13 @@ export default class Table extends React.Component {
       table: []
     };
 
-
-    this.AddRow = this.AddRow.bind(this);
     //All bindings go here
+    this.AddRow = this.AddRow.bind(this);
+
+    this.RemoveRow = this.RemoveRow.bind(this);
     /*
     this.AddCol = this.AddCol.bind(this);
-    this.RemoveRow = this.RemoveRow.bind(this);
+    
     this.RemoveCol = this.RemoveCol.bind(this);
     this.ChangeColor = this.ChangeColor.bind(this);
     */
@@ -53,18 +54,37 @@ export default class Table extends React.Component {
     
     //Append a new row 
     console.log("Hello",newRow);
-   
- ;
-    
-    
-   
   } 
 
   RemoveRow()
   {
+    //Declare a new row
+    let newRow;
+    if (this.state.numRows >= 1)
+    {
+      newRow = ["red"];
+      console.log("BOTH LESS THAN 0");
+      this.setState({
 
+        numRows: this.state.numRows - 1,
+        table: [...this.state.table.slice(0,-1)]
 
+      })
+    }
+    else 
+    {
+      newRow = new Array(this.state.numCols).fill("red");
+      this.setState({
+        numRows: 0,
+        table: [...this.state.table]
+      });
+      alert("Cannot remove any more rows!");
+      
+    }
     
+    //Append a new row 
+    console.log("Hello",newRow);
+
   }
 
 
@@ -85,6 +105,7 @@ export default class Table extends React.Component {
     return (
     <div>
         <button id="AddRow" type="button" onClick={this.AddRow} > AddRow</button>
+        <button id="RemoveRow" type="button" onClick={this.RemoveRow} > RemoveRow</button>
       <div> 
       <table>
       {this.displayData()}
