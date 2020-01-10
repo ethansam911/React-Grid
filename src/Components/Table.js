@@ -15,9 +15,9 @@ export default class Table extends React.Component {
 
 
     this.AddRow = this.AddRow.bind(this);
+    this.AddColumn = this.AddColumn.bind(this);
     //All bindings go here
     /*
-    this.AddCol = this.AddCol.bind(this);
     this.RemoveRow = this.RemoveRow.bind(this);
     this.RemoveCol = this.RemoveCol.bind(this);
     this.ChangeColor = this.ChangeColor.bind(this);
@@ -50,22 +50,40 @@ export default class Table extends React.Component {
       });
       
     }
-    
-    //Append a new row 
-    console.log("Hello",newRow);
-   
- ;
-    
-    
-   
-  } 
-
-  RemoveRow()
-  {
-
-
-    
   }
+  
+  AddColumn()
+  {
+  let newCol;
+  if (this.state.numRows === 0 && this.state.numCols === 0) {
+
+    console.log("BOTH LESS THAN 0");
+    this.setState({
+      numRows: this.state.numRows + 1,
+      numCols: this.state.numCols + 1,
+      table: [...this.state.table, newRow]
+    })
+  }
+  else 
+    {
+     let temp = this.state.table.map(element => 
+      {
+       element = <TableRow numCells = {this.state.numCols+1}/>;
+       return element;
+     })
+     this.setState({
+       //Increment the number of columns
+       numCols: this.state.numCols +1,
+       //Pass the entire array
+       table: [...temp]
+     },
+ 
+  )
+}
+};
+  
+
+
 
 
   displayData()
@@ -81,15 +99,17 @@ export default class Table extends React.Component {
     //Map through the table row and append a <td>
   }
   
-  render() {
+  render() 
+  {
     return (
     <div>
+        <h1> Number of Rows  </h1>
         <button id="AddRow" type="button" onClick={this.AddRow} > AddRow</button>
+        <button id="AddCol" type="button" onClick={this.AddColumn} > AddCol</button>
       <div> 
       <table>
       {this.displayData()}
       </table>  
-      <h1> Number of Rows  </h1>
       <p>{this.state.numRows}</p>
       </div>
     </div>  
@@ -98,3 +118,5 @@ export default class Table extends React.Component {
     );
   }
 }
+
+
