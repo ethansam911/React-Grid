@@ -1,14 +1,13 @@
+/* eslint-disable */
 import React from 'react';
- /* eslint-disable */
-
 export default class Table extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      row: 0,
-      col: 0,
-      color: 'grey'
-
+      numRows: 0,
+      numCols: 0,
+      color: 'grey',
+      table: []
     };
 
 
@@ -24,39 +23,28 @@ export default class Table extends React.Component {
 
   AddRow()
   {
-    
-    this.setState({row: this.state.row+1});
-    return (<div class="row">
-            <tr>
-                <td>Hello</td>
-            </tr>
-    </div>);
-
-
+    //Declare a new row
+    let newRow = new Array(col, 'grey');
+    //Append a new row 
+    this.setState({row: this.state.row+1,
+                   table: [...this.state.table, newRow]  });
   } 
 
   displayData()
   {
-
-
+    return this.state.table.map( row => <TableRow row={row} />)
+    //Map through the table row and append a <td>
   }
   
   render() {
-    
-
     return (
     <div>
-      <button id="AddRow" type="button" onClick="AddRow()">ADD ROW</button>
-      <button id="AddColumn" type="button" onClick="AddCol()">ADD COLUMN</button>
-      <button id="RemoveRow" type="button" onClick="RemoveRow()">REMOVE ROW</button>
-      <button id="RemoveCol" type="button" onClick="RemoveCol()">REMOVE COLUMN</button>
-      <div>
-        <tr> 
-           <td>
-             hello
-          </td>
-        </tr>
-        </div>
+      <Buttons />
+      <div> 
+
+
+      {this.displayData()}
+      </div>
     </div>  
   
     );
