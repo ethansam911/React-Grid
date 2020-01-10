@@ -6,9 +6,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <table>
-          <Table></Table>
-        </table>
+          <Table />
+    
 
       </div>
     );

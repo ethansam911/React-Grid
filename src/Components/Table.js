@@ -8,11 +8,13 @@ export default class Table extends React.Component {
       row: 0,
       col: 0,
       color: 'grey'
+
     };
 
+
+    this.AddRow = this.AddRow.bind(this);
     //All bindings go here
     /*
-    this.AddRow = this.AddRow.bind(this);
     this.AddCol = this.AddCol.bind(this);
     this.RemoveRow = this.RemoveRow.bind(this);
     this.RemoveCol = this.RemoveCol.bind(this);
@@ -20,21 +22,43 @@ export default class Table extends React.Component {
     */
   }
 
-  /*
-  AddRow(){
-    this.setState({row: this.state.row + 1});
+  AddRow()
+  {
+    
+    this.setState({row: this.state.row+1});
+    return (<div class="row">
+            <tr>
+                <td>Hello</td>
+            </tr>
+    </div>);
+
+
   } 
-  */
+
+  displayData()
+  {
+
+
+  }
+  
   render() {
     
 
     return (
     <div>
-      <button id="AddRow" type="button" onclick="AddRow()">ADD ROW</button>
-      <button id="AddColumn" type="button" onclick="AddCol()">ADD COLUMN</button>
-      <button id="RemoveRow" type="button" onclick="RemoveRow()">REMOVE ROW</button>
-      <button id="RemoveCol" type="button" onclick="RemoveCol()">REMOVE COLUMN</button>
-    </div>     
+      <button id="AddRow" type="button" onClick="AddRow()">ADD ROW</button>
+      <button id="AddColumn" type="button" onClick="AddCol()">ADD COLUMN</button>
+      <button id="RemoveRow" type="button" onClick="RemoveRow()">REMOVE ROW</button>
+      <button id="RemoveCol" type="button" onClick="RemoveCol()">REMOVE COLUMN</button>
+      <div>
+        <tr> 
+           <td>
+             hello
+          </td>
+        </tr>
+        </div>
+    </div>  
+  
     );
   }
 }
