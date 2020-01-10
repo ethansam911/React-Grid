@@ -1,0 +1,11 @@
+td
+{
+    border: solid thin black;
+    background-color: grey;
+    height: 40px;
+    width: 40px;
+}
+table
+{
+ empty-cells: show;
+}

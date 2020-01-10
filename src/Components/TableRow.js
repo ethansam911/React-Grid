@@ -1,14 +1,16 @@
 import React from "react";
-
+import TableCell from './TableCell' 
 
 export default function TableRow({columns}) 
 {
+    console.log(columns);
 
     return (
-        <div>
-            {columns.map((element) =>{
-                return element
+        <tr>
+            {columns.length>0 && columns.map((element) =>
+            {
+            return <TableCell element={element} />
             })}
-        </div>
+        </tr>
     );
   }
