@@ -61,21 +61,26 @@ export default class Table extends React.Component {
     this.setState({
       numRows: this.state.numRows + 1,
       numCols: this.state.numCols + 1,
-      table: [...this.state.table, newRow]
+      table: [...this.state.table, ["gray"]]
     })
   }
   else 
     {
-     let temp = this.state.table.map(element => 
-      {
-       element = <TableRow numCells = {this.state.numCols+1}/>;
-       return element;
-     })
+    //  let temp = this.state.table.map(element => 
+    //   {
+    //    element = <TableRow numCells = {this.state.numCols+1}/>;
+    //    return element;
+    //  })
+    let temp = [...this.state.table];
+    for (let i = 0; i < temp.length; i++) {
+      temp[i].push("gray");
+    }
+     console.log("temp:", temp);
      this.setState({
        //Increment the number of columns
        numCols: this.state.numCols +1,
        //Pass the entire array
-       table: [...temp]
+       table: temp
      },
  
   )
