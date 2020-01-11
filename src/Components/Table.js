@@ -101,6 +101,7 @@ RemoveRow()
         table: []
 
       })
+      alert("Cannot remove any rows!");
     }
     else if (this.state.numRows >= 1)
     {
@@ -140,6 +141,7 @@ RemoveRow()
         table: []
 
       })
+      alert("Cannot remove any columns!");
     }
     else if (this.state.numCols >= 1)
     {
@@ -153,7 +155,7 @@ RemoveRow()
 
       this.setState({
         
-        numRows: this.state.numRows - 1,
+        numCols: this.state.numCols - 1,
         table: temp
 
       })
