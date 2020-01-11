@@ -17,7 +17,7 @@ export default class Table extends React.Component {
     this.AddRow = this.AddRow.bind(this);
     this.AddColumn = this.AddColumn.bind(this);
     this.RemoveRow = this.RemoveRow.bind(this);
-   // this.RemoveCol = this.RemoveCol.bind(this);
+    this.RemoveCol = this.RemoveCol.bind(this);
     this.setSelectedColor = this.setSelectedColor.bind(this);
   
   }
@@ -107,6 +107,43 @@ export default class Table extends React.Component {
   )
 }
 };
+
+  RemoveCol() {
+    //Declare a new row
+
+    if (this.state.numRows === 0 || this.state.numCols === 0) {
+      this.setState({
+
+        numRows: 0,
+        numCols: 0,
+        table: []
+
+      })
+      alert("Cannot remove any columns!");
+    }
+    else if (this.state.numCols >= 1) {
+      console.log("BOTH LESS THAN 0");
+      let temp = [...this.state.table];
+
+      for (let i = 0; i < temp.length; i++) {
+        temp[i].pop();
+
+      }
+
+      this.setState({
+
+        numCols: this.state.numCols - 1,
+        table: temp
+
+      })
+    }
+    else {
+      alert("Cannot remove any more columns!");
+    }
+  }
+  
+
+
 /*
   Events are objects with certain properties, and e.target almost always represents a DOM element.Thus e.target.value is the value property of some DOM element
 */
@@ -144,6 +181,8 @@ export default class Table extends React.Component {
           <button onClick={this.AddRow}>Add Row</button>
           <button id="RemoveRow" type="button" onClick={this.RemoveRow}> RemoveRow</button>
           <button onClick={this.AddColumn}>Add Column</button>
+          <button id="RemoveCol" type="button" onClick={this.RemoveCol} > Remove Column</button>
+
             <select onChange={this.setSelectedColor}>
               <option value="gray">Gray</option>
               <option value="pink">Pink</option>
