@@ -22,7 +22,9 @@ export default class TableCell extends Component{
 render()    
 {
     console.log(this.props.color);
-    return (<td onClick={this.setColor} id={this.state.color}></td>);
+    return (<td onClick={this.setColor}
+        style={{ backgroundColor: this.state.color }} 
+        id={this.state.color}></td>);
 }
 
 }
