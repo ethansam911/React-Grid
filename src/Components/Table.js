@@ -9,7 +9,7 @@ export default class Table extends React.Component {
     this.state = {
       numRows: 0,
       numCols: 0,
-      color: 'grey',
+      colorValue: 'grey',
       table: []
     };
 
@@ -66,11 +66,6 @@ export default class Table extends React.Component {
   }
   else 
     {
-    //  let temp = this.state.table.map(element => 
-    //   {
-    //    element = <TableRow numCells = {this.state.numCols+1}/>;
-    //    return element;
-    //  })
     let temp = [...this.state.table];
     for (let i = 0; i < temp.length; i++) {
       temp[i].push("gray");
@@ -82,42 +77,61 @@ export default class Table extends React.Component {
        //Pass the entire array
        table: temp
      },
- 
+
   )
 }
 };
+/*
+  Events are objects with certain properties, and e.target almost always represents a DOM element.Thus e.target.value is the value property of some DOM element
+*/
+  setSelectedColor = (event) => 
+  {
+    this.setState({
+      colorValue: event.target.value
+    });
+  }
   
 
 
-
-
+  
   displayData()
   {
-    if(this.state.table.length!==0)
+    //The length of the table array is at least 1
+    if(this.state.table.length>0)
     {
-      return this.state.table.map( columns => <TableRow columns={columns} />)
+      //row is a key, associated with a row in the Table
+      return this.state.table.map(row => <TableRow colorValue={this.state.colorValue} row={row} />)
+        //{row} is a JSX expression representing the key   
     }
     else
     {
       return null;
     }
-    //Map through the table row and append a <td>
+
   }
-  
+
   render() 
   {
     return (
     <div>
-        <h1> Number of Rows  </h1>
-        <button id="AddRow" type="button" onClick={this.AddRow} > AddRow</button>
-        <button id="AddCol" type="button" onClick={this.AddColumn} > AddCol</button>
-      <div> 
+        <div className="buttonContainer">
+          <button onClick={this.AddRow}>Add Row</button>
+          <button onClick={this.AddColumn}>Add Column</button>
+            <select onChange={this.setSelectedColor}>
+              <option value="gray">Gray</option>
+              <option value="pink">Pink</option>
+              <option value="blue">Blue</option>
+              <option value="purple">Purple</option>
+            </select>
+        </div> {"\n"}
+          <p> Number of Rows  </p>
+          <p>{this.state.numRows}</p>
+          <p> Number of Columns </p>
+          <p>{this.state.numCols}</p>
       <table>
-      {this.displayData()}
-      </table>  
-      <p>{this.state.numRows}</p>
-      </div>
-    </div>  
+          <tbody>{this.displayData()}</tbody>
+      </table>
+      </div> 
       
   
     );
