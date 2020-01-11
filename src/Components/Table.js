@@ -16,12 +16,10 @@ export default class Table extends React.Component {
 
     this.AddRow = this.AddRow.bind(this);
     this.AddColumn = this.AddColumn.bind(this);
-    //All bindings go here
-    /*
     this.RemoveRow = this.RemoveRow.bind(this);
-    this.RemoveCol = this.RemoveCol.bind(this);
-    this.ChangeColor = this.ChangeColor.bind(this);
-    */
+   // this.RemoveCol = this.RemoveCol.bind(this);
+    this.setSelectedColor = this.setSelectedColor.bind(this);
+  
   }
 
   AddRow()
@@ -51,6 +49,34 @@ export default class Table extends React.Component {
       
     }
   }
+  RemoveRow() {
+    //Declare a new row
+    let newRow;
+    if (this.state.numRows >= 1) {
+      newRow = ["red"];
+      console.log("BOTH LESS THAN 0");
+      this.setState({
+
+        numRows: this.state.numRows - 1,
+        table: [...this.state.table.slice(0, -1)]
+
+      })
+    }
+    else {
+      newRow = new Array(this.state.numCols).fill("red");
+      this.setState({
+        numRows: 0,
+        table: [...this.state.table]
+      });
+      alert("Cannot remove any more rows!");
+
+    }
+
+    //Append a new row 
+    console.log("Hello", newRow);
+
+  }
+
   
   AddColumn()
   {
@@ -116,6 +142,7 @@ export default class Table extends React.Component {
     <div>
         <div className="buttonContainer">
           <button onClick={this.AddRow}>Add Row</button>
+          <button id="RemoveRow" type="button" onClick={this.RemoveRow}> RemoveRow</button>
           <button onClick={this.AddColumn}>Add Column</button>
             <select onChange={this.setSelectedColor}>
               <option value="gray">Gray</option>

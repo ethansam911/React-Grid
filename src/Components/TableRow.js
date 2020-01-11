@@ -26,4 +26,4 @@ export default class TableRow extends Component{
         return <tr> {this.updateRowContent()} </tr>;
     }
 
-}
+}     

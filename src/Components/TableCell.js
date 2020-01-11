@@ -11,11 +11,10 @@ export default class TableCell extends Component{
             isColored: false
         }
     }
-
     setColor = () =>
     {
         this.setState({
-            color: this.props.colorValue,
+            color: this.props.color,
             isColored: true
         })
     }
